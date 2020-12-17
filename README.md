@@ -4,4 +4,4 @@
 
 ## NavBar:
 
-![](.\demo_pictures\NavBar.gif)
+![](./demo_pictures/NavBar.gif)
