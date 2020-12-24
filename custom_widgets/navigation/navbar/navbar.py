@@ -41,77 +41,47 @@ class NavBar(QWidget):
     def __init__(self, parent=None):
         super(NavBar, self).__init__(parent)
 
-        # 导航条主背景渐变开始颜色
-        self.__bgColorStart: QColor = QColor(121, 121, 121)
-        # 导航条主背景渐变结束颜色
-        self.__bgColorEnd: QColor = QColor(78, 78, 78)
-        # 用于扁平化切换
-        self.__old_bgColorEnd: QColor = self.__bgColorEnd
+        self.__bgColorStart: QColor = QColor(121, 121, 121)  # 导航条主背景渐变开始颜色
+        self.__bgColorEnd: QColor = QColor(78, 78, 78)  # 导航条主背景渐变结束颜色
+        self.__old_bgColorEnd: QColor = self.__bgColorEnd  # 用于扁平化切换
 
-        # 导航条当前条目渐变开始颜色
-        self.__barColorStart: QColor = QColor(46, 132, 243)
-        # 导航条当前条目渐变结束颜色
-        self.__barColorEnd: QColor = QColor(39, 110, 203)
-        # 用于扁平化切换
-        self.__old_barColorEnd: QColor = self.__barColorEnd
+        self.__barColorStart: QColor = QColor(46, 132, 243)  # 导航条当前条目渐变开始颜色
+        self.__barColorEnd: QColor = QColor(39, 110, 203)  # 导航条当前条目渐变结束颜色
+        self.__old_barColorEnd: QColor = self.__barColorEnd  # 用于扁平化切换
 
-        # 文字正常颜色
-        self.__textNormalColor: QColor = QColor(230, 230, 230)
-        # 文字选中颜色
-        self.__textSelectColor: QColor = QColor(255, 255, 255)
+        self.__textNormalColor: QColor = QColor(230, 230, 230)  # 文字正常颜色
+        self.__textSelectColor: QColor = QColor(255, 255, 255)  # 文字选中颜色
 
-        # 所有条目文字信息
-        self.__items: str = ""
-        # 当前选中条目索引
-        self.__currentIndex: int = -1
-        # 当前选中条目文字
-        self.__currentItem: str = ""
+        self.__items: str = ""  # 所有条目文字信息
+        self.__currentIndex: int = -1  # 当前选中条目索引
+        self.__currentItem: str = ""  # 当前选中条目文字
 
-        # 背景圆角半径
-        self.__bgRadius: int = 0
-        # 选中条目背景圆角半径
-        self.__barRadius: int = 0
-        # 条目元素之间的间距
-        self.__space: int = 25
+        self.__bgRadius: int = 0  # 背景圆角半径
+        self.__barRadius: int = 0  # 选中条目背景圆角半径
+        self.__space: int = 25  # 条目元素之间的间距
 
-        # 线条宽度
-        self.__lineWidth: int = 3
-        # 线条颜色
-        self.__lineColor: QColor = QColor(255, 107, 107)
+        self.__lineWidth: int = 3  # 线条宽度
+        self.__lineColor: QColor = QColor(255, 107, 107)  # 线条颜色
 
-        # 选中元素样式
-        self.__barStyle: NavBar.BarStyle = NavBar.BarStyle.BARSTYLE_RECT
+        self.__barStyle: NavBar.BarStyle = NavBar.BarStyle.BARSTYLE_RECT  # 选中元素样式
 
-        # 是否支持按键移动
-        self.__keyMove: bool = True
-        # 是否横向显示
-        self.__horizontal: bool = False
-        # 是否扁平化
-        self.__flat: bool = False
+        self.__keyMove: bool = True  # 是否支持按键移动
+        self.__horizontal: bool = False  # 是否横向显示
+        self.__flat: bool = False  # 是否扁平化
 
-        # 元素集合,成对出现,元素的名字,矩形区域范围
-        self.__listItem: list = []
+        self.__listItem: list = []  # 元素集合,成对出现,元素的名字,矩形区域范围
 
-        # 选中区域的矩形
-        self.__barRect: QRectF = QRectF()
-        # 目标区域的矩形
-        self.__targetRect: QRectF = QRectF()
-        # 选中区域的长度
-        self.__barLen: Decimal = Decimal(0)
-        # 目标区域的长度
-        self.__targetLen: Decimal = Decimal(0)
+        self.__barRect: QRectF = QRectF()  # 选中区域的矩形
+        self.__targetRect: QRectF = QRectF()  # 目标区域的矩形
+        self.__barLen: Decimal = Decimal(0)  # 选中区域的长度
+        self.__targetLen: Decimal = Decimal(0)  # 目标区域的长度
 
-        # 导航条的长度
-        self.__initLen: Decimal = Decimal(10)
-        # 每次移动的步长
-        self.__step: int = 0
+        self.__initLen: Decimal = Decimal(10)  # 导航条的长度
+        self.__step: int = 0  # 每次移动的步长
 
-        # 是否往前移动
-        self.__isForward: bool = True
-        # 是否首次处理
-        self.__isVirgin: bool = True
-        # 滑动绘制定时器
-        self.__timer: QTimer = QTimer(self)
+        self.__isForward: bool = True  # 是否往前移动
+        self.__isVirgin: bool = True  # 是否首次处理
+        self.__timer: QTimer = QTimer(self)  # 滑动绘制定时器
         self.__timer.setInterval(10)
         self.__timer.timeout.connect(self.__slide)
 
@@ -129,7 +99,7 @@ class NavBar(QWidget):
 
         return int(n * 1.4)
 
-    def resizeEvent(self, event: QResizeEvent):
+    def resizeEvent(self, event: QResizeEvent) -> None:
         """ 控件大小调整事件 """
         index: int = 0
         count: int = len(self.__listItem)
@@ -148,11 +118,11 @@ class NavBar(QWidget):
 
         self.moveTo_int(index)
 
-    def mousePressEvent(self, event: QMouseEvent):
+    def mousePressEvent(self, event: QMouseEvent) -> None:
         """ 鼠标按压信号 """
         self.moveTo_point(event.pos())
 
-    def keyPressEvent(self, event: QKeyEvent):
+    def keyPressEvent(self, event: QKeyEvent) -> None:
         """  """
         if not self.__keyMove:
             return
@@ -162,7 +132,7 @@ class NavBar(QWidget):
         elif (event.key() == Qt.Key_Right) or (event.key() == Qt.Key_Down):
             self.moveNext()
 
-    def paintEvent(self, event: QPaintEvent):
+    def paintEvent(self, event: QPaintEvent) -> None:
         """  """
         # 绘制准备工作，启用反锯齿
         painter: QPainter = QPainter(self)
@@ -175,7 +145,7 @@ class NavBar(QWidget):
         # 绘制条目文字
         self.drawText(painter)
 
-    def drawBg(self, painter: QPainter):
+    def drawBg(self, painter: QPainter) -> None:
         """ 绘制背景色 """
         painter.save()
         painter.setPen(Qt.NoPen)
@@ -186,7 +156,7 @@ class NavBar(QWidget):
         painter.drawRoundedRect(self.rect(), self.__bgRadius, self.__bgRadius)
         painter.restore()
 
-    def drawBar(self, painter: QPainter):
+    def drawBar(self, painter: QPainter) -> None:
         """ 绘制当前条目选中背景 """
         painter.save()
         pen: QPen = QPen()  # PySide2.QtGui.QPen
@@ -228,7 +198,7 @@ class NavBar(QWidget):
 
         painter.restore()
 
-    def drawText(self, painter: QPainter):
+    def drawText(self, painter: QPainter) -> None:
         """  """
         painter.save()
         textFont: QFont = QFont()
@@ -277,7 +247,7 @@ class NavBar(QWidget):
 
         painter.restore()
 
-    def __slide(self):
+    def __slide(self) -> None:
         """ 滑动绘制 """
         if self.__step > 1:
             self.__step -= 1
@@ -311,7 +281,7 @@ class NavBar(QWidget):
         """ 读取导航条主背景渐变开始颜色 """
         return self.__bgColorStart
 
-    def setBgColorStart(self, color_start: QColor):
+    def setBgColorStart(self, color_start: QColor) -> None:
         """ 设置导航条主背景渐变开始颜色 """
         if self.__bgColorStart != color_start:
             self.__bgColorStart = color_start
@@ -321,7 +291,7 @@ class NavBar(QWidget):
         """ 读取导航条主背景渐变结束颜色 """
         return self.__bgColorEnd
 
-    def setBgColorEnd(self, color_end: QColor):
+    def setBgColorEnd(self, color_end: QColor) -> None:
         """ 设置导航条主背景渐变结束颜色 """
         if self.__bgColorEnd != color_end:
             self.__bgColorEnd = color_end
@@ -332,7 +302,7 @@ class NavBar(QWidget):
         """ 读取导航条当前条目渐变开始颜色 """
         return self.__barColorStart
 
-    def setBarColorStart(self, color_start: QColor):
+    def setBarColorStart(self, color_start: QColor) -> None:
         """ 设置导航条当前条目渐变开始颜色 """
         if self.__barColorStart != color_start:
             self.__barColorStart = color_start
@@ -342,7 +312,7 @@ class NavBar(QWidget):
         """ 读取导航条当前条目渐变结束颜色 """
         return self.__barColorEnd
 
-    def setBarColorEnd(self, color_end: QColor):
+    def setBarColorEnd(self, color_end: QColor) -> None:
         """ 设置导航条当前条目渐变结束颜色 """
         if self.__barColorEnd != color_end:
             self.__barColorEnd = color_end
@@ -353,7 +323,7 @@ class NavBar(QWidget):
         """ 读取文字正常颜色 """
         return self.__textNormalColor
 
-    def setTextNormalColor(self, normal_color: QColor):
+    def setTextNormalColor(self, normal_color: QColor) -> None:
         """ 设置文字正常颜色 """
         if self.__textNormalColor != normal_color:
             self.__textNormalColor = normal_color
@@ -363,7 +333,7 @@ class NavBar(QWidget):
         """ 读取文字选中颜色 """
         return self.__textSelectColor
 
-    def setTextSelectColor(self, select_color: QColor):
+    def setTextSelectColor(self, select_color: QColor) -> None:
         """ 设置文字选中颜色 """
         if self.__textSelectColor != select_color:
             self.__textSelectColor = select_color
@@ -373,7 +343,7 @@ class NavBar(QWidget):
         """ 读取所有条目文字信息 """
         return self.__items
 
-    def setItems(self, items: str):
+    def setItems(self, items: str) -> None:
         """ 设置所有条目文字信息 """
         self.__items = items
         self.__listItem.clear()
@@ -387,7 +357,7 @@ class NavBar(QWidget):
         """ 读取当前选中条目索引 """
         return self.__currentIndex
 
-    def setCurrentIndex(self, index: int):
+    def setCurrentIndex(self, index: int) -> None:
         """ 设置当前选中条目索引 """
         self.moveTo_int(index)
 
@@ -395,7 +365,7 @@ class NavBar(QWidget):
         """ 读取当前选中条目文字 """
         return self.__currentItem
 
-    def setCurrentItem(self, item: str):
+    def setCurrentItem(self, item: str) -> None:
         """ 设置当前选中条目文字 """
         self.moveTo_str(item)
 
@@ -403,7 +373,7 @@ class NavBar(QWidget):
         """ 读取背景圆角半径 """
         return self.__bgRadius
 
-    def setBgRadius(self, radius: int):
+    def setBgRadius(self, radius: int) -> None:
         """ 设置背景圆角半径 """
         if self.__bgRadius != radius:
             self.__bgRadius = radius
@@ -413,7 +383,7 @@ class NavBar(QWidget):
         """ 读取选中条目背景圆角半径 """
         return self.__barRadius
 
-    def setBarRadius(self, radius: int):
+    def setBarRadius(self, radius: int) -> None:
         """ 设置选中条目背景圆角半径 """
         if self.__barRadius != radius:
             self.__barRadius = radius
@@ -423,7 +393,7 @@ class NavBar(QWidget):
         """ 读取条目元素之间的间距 """
         return self.__space
 
-    def setSpace(self, space: int):
+    def setSpace(self, space: int) -> None:
         """ 设置条目元素之间的间距 """
         if self.space != space:
             self.space = space
@@ -433,7 +403,7 @@ class NavBar(QWidget):
         """ 读取线条宽度 """
         return self.__lineWidth
 
-    def setLineWidth(self, line_width: int):
+    def setLineWidth(self, line_width: int) -> None:
         """ 设置线条宽度 """
         if self.__lineWidth != line_width:
             self.__lineWidth = line_width
@@ -443,7 +413,7 @@ class NavBar(QWidget):
         """ 读取线条颜色 """
         return self.__lineColor
 
-    def setLineColor(self, line_color: QColor):
+    def setLineColor(self, line_color: QColor) -> None:
         """ 设置线条颜色 """
         if self.__lineColor != line_color:
             self.__lineColor = line_color
@@ -453,7 +423,7 @@ class NavBar(QWidget):
         """ 读取选中元素样式 """
         return self.__barStyle
 
-    def setBarStyle(self, bar_style: BarStyle):
+    def setBarStyle(self, bar_style: BarStyle) -> None:
         """ 设置选中元素样式 """
         if self.__barStyle != bar_style:
             self.__barStyle = bar_style
@@ -463,7 +433,7 @@ class NavBar(QWidget):
         """ 读取是否支持按键移动 """
         return self.__keyMove
 
-    def setKeyMove(self, key_move: bool):
+    def setKeyMove(self, key_move: bool) -> None:
         """ 设置是否支持按键移动 """
         if self.__keyMove != key_move:
             self.__keyMove = key_move
@@ -476,7 +446,7 @@ class NavBar(QWidget):
         """ 读取是否横向显示 """
         return self.__horizontal
 
-    def setHorizontal(self, horizontal: bool):
+    def setHorizontal(self, horizontal: bool) -> None:
         """ 设置是否横向显示 """
         if self.__horizontal != horizontal:
             self.__horizontal = horizontal
@@ -486,7 +456,7 @@ class NavBar(QWidget):
         """ 读取是否扁平化 """
         return self.__flat
 
-    def setFlat(self, flat: bool):
+    def setFlat(self, flat: bool) -> None:
         """ 设置是否扁平化 """
         if self.__flat != flat:
             # 扁平后将初始颜色赋值给结束颜色达到扁平的效果，如果取消扁平则再次恢复原有的颜色
@@ -508,43 +478,43 @@ class NavBar(QWidget):
         """ 返回控件最小大小 """
         return QSize(30, 30)
 
-    def clearItem(self):
+    def clearItem(self) -> None:
         """ 删除所有条目 """
         self.__listItem.clear()
         self.update()
 
-    def moveFirst(self):
+    def moveFirst(self) -> None:
         """ 移动到第一个条目 """
         index: int = 0
         if self.__currentIndex != index:
             self.moveTo_int(index)
 
-    def moveLast(self):
+    def moveLast(self) -> None:
         """ 移动到最后一个条目 """
         index = len(self.__listItem) - 1
         if self.__currentIndex != index:
             self.moveTo_int(index)
 
-    def movePrevious(self):
+    def movePrevious(self) -> None:
         """ 往前移动条目 """
         if self.__currentIndex > 0:
             self.__currentIndex -= 1
             self.moveTo_int(self.__currentIndex)
 
-    def moveNext(self):
+    def moveNext(self) -> None:
         """ 往后移动条目 """
         if self.__currentIndex < (len(self.__listItem) - 1):
             self.__currentIndex += 1
             self.moveTo_int(self.__currentIndex)
 
-    def moveTo_int(self, index: int):
+    def moveTo_int(self, index: int) -> None:
         """ 移动到指定索引条目 """
         if (index >= 0) and (len(self.__listItem) > index):
             rec: QRectF = QRectF(self.__listItem[index][1])
             pos: QPoint = QPoint(int(rec.x()), int(rec.y()))
             self.moveTo_point(pos)
 
-    def moveTo_str(self, item: str):
+    def moveTo_str(self, item: str) -> None:
         """ 移动到指定文字条目 """
         count: int = len(self.__listItem)
         for i in range(count):
@@ -552,7 +522,7 @@ class NavBar(QWidget):
                 self.moveTo_int(i)
                 break
 
-    def moveTo_point(self, point: QPointF):
+    def moveTo_point(self, point: QPointF) -> None:
         """ 移动到指定坐标位置条目 """
         count: int = len(self.__listItem)
         for i in range(count):
@@ -619,7 +589,7 @@ class NavBar(QWidget):
 if __name__ == '__main__':
     import sys
 
-    def printCurrentItem(index: int, item: str):
+    def printCurrentItem(index: int, item: str) -> None:
         print("当前项目：{} - {}".format(index, item))
 
     app: QApplication = QApplication(sys.argv)

@@ -47,7 +47,7 @@ class IconHelper(QObject, metaclass=Singleton):
 
     def setIconForQLabel(self, label: QLabel,
                          text: str,
-                         font_size: int = 12):
+                         font_size: int = 12) -> None:
         """ 设置 QLabel 的图标 """
         self.icon_font.setPixelSize(font_size)
         label.setFont(self.icon_font)
@@ -57,7 +57,7 @@ class IconHelper(QObject, metaclass=Singleton):
 
     def setIconForQAbstractButton(self, button: PySide2.QtWidgets.QAbstractButton,
                                   text: str,
-                                  font_size: int = 12):
+                                  font_size: int = 12) -> None:
         """ 设置 QAbstractButton 的图标 """
 
         self.icon_font.setPixelSize(font_size)
@@ -113,7 +113,7 @@ class IconHelper(QObject, metaclass=Singleton):
                                  normal_bg_color: str = "#292F38",
                                  dark_bg_color: str = "#1D2025",
                                  normal_text_color: str = "#54626F",
-                                 dark_text_color: str = "#FDFDFD"):
+                                 dark_text_color: str = "#FDFDFD") -> None:
         """ 指定导航面板样式，不带图标 """
         strBorder: str = ""
         if text_location == "top":
@@ -158,7 +158,7 @@ class IconHelper(QObject, metaclass=Singleton):
                            normal_bg_color: str = "#292F38",
                            dark_bg_color: str = "#1D2025",
                            normal_text_color: str = "#54626F",
-                           dark_text_color: str = "#FDFDFD"):
+                           dark_text_color: str = "#FDFDFD") -> None:
         """ 指定导航面板样式，带图标和效果切换 """
         btnCount: int = len(buttons)
         charCount: int = len(pix_char)
@@ -232,7 +232,7 @@ class IconHelper(QObject, metaclass=Singleton):
                              normal_bg_color: str = "#2FC5A2",
                              dark_bg_color: str = "#3EA7E9",
                              normal_text_color: str = "EEEEEE",
-                             dark_text_color: str = "FFFFFF"):
+                             dark_text_color: str = "FFFFFF") -> None:
         """ 指定导航按钮样式，带图标和效果切换 """
         btnCount: int = len(buttons)
         charCount: int = len(pix_char)
@@ -266,8 +266,7 @@ class IconHelper(QObject, metaclass=Singleton):
 
     # setStyleForNavButton
 
-    def eventFilter(self, watched: PySide2.QtCore.QObject,
-                    event: PySide2.QtCore.QEvent) -> bool:
+    def eventFilter(self, watched: PySide2.QtCore.QObject, event: PySide2.QtCore.QEvent) -> bool:
         """ 事件过滤器 """
         if watched.inherits("QToolButton"):  # 这里会警告期望输入bytes实际输入str，应该是qt本身的问题，因为文档和实际运行都是str
             btn: QToolButton = watched
@@ -286,7 +285,7 @@ class IconHelper(QObject, metaclass=Singleton):
 
 
 if __name__ == '__main__':
-    def buttonClick1():
+    def buttonClick1() -> None:
         print("hello world")
 
     import sys

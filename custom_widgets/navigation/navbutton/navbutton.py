@@ -56,87 +56,57 @@ class NavButton(QPushButton):
     def __init__(self, parent=None):
         super(NavButton, self).__init__(parent=parent)
 
-        # 文字左侧间隔
-        self.__paddingLeft: int = 20
-        # 文字右侧间隔
-        self.__paddingRight: int = 5
-        # 文字顶部间隔
-        self.__paddingTop: int = 5
-        # 文字底部间隔
-        self.__paddingBottom: int = 5
-        # 文字对齐
-        self.__textAlign: NavButton.TextAlign = NavButton.TextAlign.TEXTALIGN_LEFT
+        self.__paddingLeft: int = 20  # 文字左侧间隔
+        self.__paddingRight: int = 5  # 文字右侧间隔
+        self.__paddingTop: int = 5  # 文字顶部间隔
+        self.__paddingBottom: int = 5  # 文字底部间隔
+        self.__textAlign: NavButton.TextAlign = NavButton.TextAlign.TEXTALIGN_LEFT  # 文字对齐
 
-        # 显示倒三角
-        self.__showTriangle: bool = False
-        # 倒三角边长
-        self.__triangleLen: int = 5
-        # 倒三角位置
-        self.__trianglePosition: NavButton.TrianglePosition = NavButton.TrianglePosition.TRIANGLEPOSITION_RIGHT
-        # 倒三角颜色
-        self.__triangleColor: QColor = QColor(255, 255, 255)
+        self.__showTriangle: bool = False  # 显示倒三角
+        self.__triangleLen: int = 5  # 倒三角边长
+        self.__trianglePosition: NavButton.TrianglePosition = NavButton.TrianglePosition.TRIANGLEPOSITION_RIGHT  # 倒三角位置
+        self.__triangleColor: QColor = QColor(255, 255, 255)  # 倒三角颜色
 
-        # 显示图标
-        self.__showIcon: bool = True
-        # 图标间隔
-        self.__iconSpace: int = 10
-        # 图标尺寸
-        self.__iconSize: QSize = QSize(16, 16)
-        # 正常图标
-        self.__iconNormal: QPixmap = QPixmap(0, 0)
-        # 悬停图标
-        self.__iconHover: QPixmap = QPixmap(0, 0)
-        # 选中图标
-        self.__iconCheck: QPixmap = QPixmap(0, 0)
+        self.__showIcon: bool = True  # 显示图标
+        self.__iconSpace: int = 10  # 图标间隔
+        self.__iconSize: QSize = QSize(16, 16)  # 图标尺寸
+        self.__iconNormal: QPixmap = QPixmap(0, 0)  # 正常图标
+        self.__iconHover: QPixmap = QPixmap(0, 0)  # 悬停图标
+        self.__iconCheck: QPixmap = QPixmap(0, 0)  # 选中图标
 
-        # 显示线条
-        self.__showLine: bool = True
-        # 线条间隔
-        self.__lineSpace: int = 0
-        # 线条宽度
-        self.__lineWidth: int = 5
-        # 线条位置
-        self.__linePosition: NavButton.LinePosition = NavButton.LinePosition.LINEPOSITION_LEFT
-        # 线条颜色
-        self.__lineColor: QColor = QColor(0, 187, 158)
+        self.__showLine: bool = True  # 显示线条
+        self.__lineSpace: int = 0  # 线条间隔
+        self.__lineWidth: int = 5  # 线条宽度
+        self.__linePosition: NavButton.LinePosition = NavButton.LinePosition.LINEPOSITION_LEFT  # 线条位置
+        self.__lineColor: QColor = QColor(0, 187, 158)  # 线条颜色
 
-        # 正常背景颜色
-        self.__normalBgColor: QColor = QColor(230, 230, 230)
-        # 悬停背景颜色
-        self.__hoverBgColor: QColor = QColor(130, 130, 130)
-        # 选中背景颜色
-        self.__checkBgColor: QColor = QColor(80, 80, 80)
-        # 正常文字颜色
-        self.__normalTextColor: QColor = QColor(100, 100, 100)
-        # 悬停文字颜色
-        self.__hoverTextColor: QColor = QColor(255, 255, 255)
-        # 选中文字颜色
-        self.__checkTextColor: QColor = QColor(255, 255, 255)
+        self.__normalBgColor: QColor = QColor(230, 230, 230)  # 正常背景颜色
+        self.__hoverBgColor: QColor = QColor(130, 130, 130)  # 悬停背景颜色
+        self.__checkBgColor: QColor = QColor(80, 80, 80)  # 选中背景颜色
+        self.__normalTextColor: QColor = QColor(100, 100, 100)  # 正常文字颜色
+        self.__hoverTextColor: QColor = QColor(255, 255, 255)  # 悬停文字颜色
+        self.__checkTextColor: QColor = QColor(255, 255, 255)  # 选中文字颜色
 
-        # 正常背景画刷
-        self.__normalBgBrush: QBrush = Qt.NoBrush
-        # 悬停背景画刷
-        self.__hoverBgBrush: QBrush = Qt.NoBrush
-        # 选中背景画刷
-        self.__checkBgBrush: QBrush = Qt.NoBrush
+        self.__normalBgBrush: QBrush = Qt.NoBrush  # 正常背景画刷
+        self.__hoverBgBrush: QBrush = Qt.NoBrush  # 悬停背景画刷
+        self.__checkBgBrush: QBrush = Qt.NoBrush  # 选中背景画刷
 
-        # 悬停标志位
-        self.__hover: bool = False
+        self.__hover: bool = False  # 悬停标志位
 
         self.setCheckable(True)
         self.setText("导航按钮")
 
-    def enterEvent(self, event: QEvent):
+    def enterEvent(self, event: QEvent) -> None:
         """  """
         self.__hover = True
         self.update()
 
-    def leaveEvent(self, event: QEvent):
+    def leaveEvent(self, event: QEvent) -> None:
         """  """
         self.__hover = False
         self.update()
 
-    def paintEvent(self, event: QEvent):
+    def paintEvent(self, event: QEvent) -> None:
         """  """
         # 绘制准备工作，启用反锯齿
         painter: QPainter = QPainter(self)
@@ -153,7 +123,7 @@ class NavButton(QPushButton):
         # 绘制倒三角
         self.drawTriangle(painter)
 
-    def drawBg(self, painter: QPainter):
+    def drawBg(self, painter: QPainter) -> None:
         """  """
         painter.save()
         painter.setPen(Qt.NoPen)
@@ -196,7 +166,7 @@ class NavButton(QPushButton):
 
         painter.restore()
 
-    def drawText(self, painter: QPainter):
+    def drawText(self, painter: QPainter) -> None:
         """  """
         painter.save()
         painter.setBrush(Qt.NoBrush)
@@ -219,7 +189,7 @@ class NavButton(QPushButton):
 
         painter.restore()
 
-    def drawIcon(self, painter: QPainter):
+    def drawIcon(self, painter: QPainter) -> None:
         """  """
         if not self.__showIcon:
             return
@@ -240,7 +210,7 @@ class NavButton(QPushButton):
 
         painter.restore()
 
-    def drawLine(self, painter: QPainter):
+    def drawLine(self, painter: QPainter) -> None:
         """  """
         if not self.__showLine:
             return
@@ -275,7 +245,7 @@ class NavButton(QPushButton):
 
         painter.restore()
 
-    def drawTriangle(self, painter: QPainter):
+    def drawTriangle(self, painter: QPainter) -> None:
         """  """
         if not self.__showTriangle:
             return
@@ -432,31 +402,31 @@ class NavButton(QPushButton):
         """  """
         return QSize(20, 10)
 
-    def setPaddingLeft(self, padding_left: int):
+    def setPaddingLeft(self, padding_left: int) -> None:
         """ 设置文字左侧间隔 """
         if self.__paddingLeft != padding_left:
             self.__paddingLeft = padding_left
             self.update()
 
-    def setPaddingRight(self, padding_right: int):
+    def setPaddingRight(self, padding_right: int) -> None:
         """ 设置文字右侧间隔 """
         if self.__paddingRight != padding_right:
             self.__paddingRight = padding_right
             self.update()
 
-    def setPaddingTop(self, padding_top: int):
+    def setPaddingTop(self, padding_top: int) -> None:
         """ 设置文字顶部间隔 """
         if self.__paddingTop != padding_top:
             self.__paddingTop = padding_top
             self.update()
 
-    def setPaddingBottom(self, padding_bottom: int):
+    def setPaddingBottom(self, padding_bottom: int) -> None:
         """ 设置文字底部间隔 """
         if self.__paddingBottom != padding_bottom:
             self.__paddingBottom = padding_bottom
             self.update()
 
-    def setPadding(self, padding_left: int, padding_right: int, padding_top: int, padding_bottom: int):
+    def setPadding(self, padding_left: int, padding_right: int, padding_top: int, padding_bottom: int) -> None:
         """ 设置文字间隔 """
         self.__paddingLeft = padding_left
         self.__paddingRight = padding_right
@@ -464,148 +434,148 @@ class NavButton(QPushButton):
         self.__paddingBottom = padding_bottom
         self.update()
 
-    def setTextAlign(self, text_align: TextAlign):
+    def setTextAlign(self, text_align: TextAlign) -> None:
         """ 设置文字对齐 """
         if self.__textAlign != text_align:
             self.__textAlign = text_align
             self.update()
 
-    def setShowTriangle(self, show_triangle: bool):
+    def setShowTriangle(self, show_triangle: bool) -> None:
         """ 设置是否显示倒三角 """
         if self.__showTriangle != show_triangle:
             self.__showTriangle = show_triangle
             self.update()
 
-    def setTriangleLen(self, triangle_len: int):
+    def setTriangleLen(self, triangle_len: int) -> None:
         """ 设置倒三角边长 """
         if self.__triangleLen != triangle_len:
             self.__triangleLen = triangle_len
             self.update()
 
-    def setTrianglePosition(self, triangle_position: TrianglePosition):
+    def setTrianglePosition(self, triangle_position: TrianglePosition) -> None:
         """ 设置倒三角位置 """
         if self.__trianglePosition != triangle_position:
             self.__trianglePosition = triangle_position
             self.update()
 
-    def setTriangleColor(self, triangle_color: QColor):
+    def setTriangleColor(self, triangle_color: QColor) -> None:
         """ 设置倒三角颜色 """
         if self.__triangleColor != triangle_color:
             self.__triangleColor = triangle_color
             self.update()
 
-    def setShowIcon(self, show_icon: bool):
+    def setShowIcon(self, show_icon: bool) -> None:
         """ 设置是否显示图标 """
         if self.__showIcon != show_icon:
             self.__showIcon = show_icon
             self.update()
 
-    def setIconSpace(self, icon_space: int):
+    def setIconSpace(self, icon_space: int) -> None:
         """ 设置图标间隔 """
         if self.__iconSpace != icon_space:
             self.__iconSpace = icon_space
             self.update()
 
-    def setIconSize(self, icon_size: QSize):
+    def setIconSize(self, icon_size: QSize) -> None:
         """ 设置图标尺寸 """
         if self.__iconSize != icon_size:
             self.__iconSize = icon_size
             self.update()
 
-    def setIconNormal(self, icon_normal: QPixmap):
+    def setIconNormal(self, icon_normal: QPixmap) -> None:
         """ 设置正常图标 """
         self.__iconNormal = icon_normal
         self.update()
 
-    def setIconHover(self, icon_hover: QPixmap):
+    def setIconHover(self, icon_hover: QPixmap) -> None:
         """ 设置悬停图标 """
         self.__iconHover = icon_hover
         self.update()
 
-    def setIconCheck(self, icon_check: QPixmap):
+    def setIconCheck(self, icon_check: QPixmap) -> None:
         """ 设置按下图标 """
         self.__iconCheck = icon_check
         self.update()
 
-    def setShowLine(self, show_line: bool):
+    def setShowLine(self, show_line: bool) -> None:
         """ 设置是否显示线条 """
         if self.__showLine != show_line:
             self.__showLine = show_line
             self.update()
 
-    def setLineSpace(self, line_space: int):
+    def setLineSpace(self, line_space: int) -> None:
         """ 设置线条间隔 """
         if self.__lineSpace != line_space:
             self.__lineSpace = line_space
             self.update()
 
-    def setLineWidth(self, line_width: int):
+    def setLineWidth(self, line_width: int) -> None:
         """ 设置线条宽度 """
         if self.__lineWidth != line_width:
             self.__lineWidth = line_width
             self.update()
 
-    def setLinePosition(self, line_position: LinePosition):
+    def setLinePosition(self, line_position: LinePosition) -> None:
         """ 设置线条位置 """
         if self.__linePosition != line_position:
             self.__linePosition = line_position
             self.update()
 
-    def setLineColor(self, line_color: QColor):
+    def setLineColor(self, line_color: QColor) -> None:
         """ 设置线条颜色 """
         if self.__lineColor != line_color:
             self.__lineColor = line_color
             self.update()
 
-    def setNormalBgColor(self, normal_bg_color: QColor):
+    def setNormalBgColor(self, normal_bg_color: QColor) -> None:
         """ 设置正常背景颜色 """
         if self.__normalBgColor != normal_bg_color:
             self.__normalBgColor = normal_bg_color
             self.update()
 
-    def setHoverBgColor(self, hover_bg_color: QColor):
+    def setHoverBgColor(self, hover_bg_color: QColor) -> None:
         """ 设置悬停背景颜色 """
         if self.__hoverBgColor != hover_bg_color:
             self.__hoverBgColor = hover_bg_color
             self.update()
 
-    def setCheckBgColor(self, check_bg_color: QColor):
+    def setCheckBgColor(self, check_bg_color: QColor) -> None:
         """ 设置选中背景颜色 """
         if self.__checkBgColor != check_bg_color:
             self.__checkBgColor = check_bg_color
             self.update()
 
-    def setNormalTextColor(self, normal_text_color: QColor):
+    def setNormalTextColor(self, normal_text_color: QColor) -> None:
         """ 设置正常文字颜色 """
         if self.__normalTextColor != normal_text_color:
             self.__normalTextColor = normal_text_color
             self.update()
 
-    def setHoverTextColor(self, hover_text_color: QColor):
+    def setHoverTextColor(self, hover_text_color: QColor) -> None:
         """ 设置悬停文字颜色 """
         if self.__hoverTextColor != hover_text_color:
             self.__hoverTextColor = hover_text_color
             self.update()
 
-    def setCheckTextColor(self, check_text_color: QColor):
+    def setCheckTextColor(self, check_text_color: QColor) -> None:
         """ 设置选中文字颜色 """
         if self.__checkTextColor != check_text_color:
             self.__checkTextColor = check_text_color
             self.update()
 
-    def setNormalBgBrush(self, normal_bg_brush: QBrush):
+    def setNormalBgBrush(self, normal_bg_brush: QBrush) -> None:
         """ 设置正常背景画刷 """
         if self.__normalBgBrush != normal_bg_brush:
             self.__normalBgBrush = normal_bg_brush
             self.update()
 
-    def setHoverBgBrush(self, hover_bg_brush: QBrush):
+    def setHoverBgBrush(self, hover_bg_brush: QBrush) -> None:
         """ 设置悬停背景画刷 """
         if self.__hoverBgBrush != hover_bg_brush:
             self.__hoverBgBrush = hover_bg_brush
             self.update()
 
-    def setCheckBgBrush(self, check_bg_brush: QBrush):
+    def setCheckBgBrush(self, check_bg_brush: QBrush) -> None:
         """ 设置选中背景画刷 """
         if self.__checkBgBrush != check_bg_brush:
             self.__checkBgBrush = check_bg_brush
@@ -646,7 +616,7 @@ class NavButton(QPushButton):
 if __name__ == '__main__':
     import sys
 
-    def buttonClick(is_clicked: bool):
+    def buttonClick(is_clicked: bool) -> None:
         print(is_clicked)
 
     app: QApplication = QApplication(sys.argv)
