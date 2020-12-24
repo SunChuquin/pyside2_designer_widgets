@@ -21,3 +21,6 @@
 
 ![](./demo_pictures/NavButton.gif)
 
+### NavTitle:
+![](./demo_pictures/NavTitle.gif)
+
