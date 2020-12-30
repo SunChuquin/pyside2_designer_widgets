@@ -7,6 +7,7 @@
 这些作者是：
 
 1. 飞扬青云(QQ:517216493)
+2. ekhumoro([stackoverrun user name](https://stackoverrun.com/cn/q/6014055))
 
 ## 依赖库版本
 1. PySide2 - 5.15.1
@@ -24,3 +25,5 @@
 ### NavTitle:
 ![](./demo_pictures/NavTitle.gif)
 
+### CustomSplitter
+![](./demo_pictures/CustomSplitter.gif)
