@@ -25,5 +25,8 @@
 ### NavTitle:
 ![](./demo_pictures/NavTitle.gif)
 
+### NavListView:
+![](./demo_pictures/NavListView.gif)
+
 ### CustomSplitter
 ![](./demo_pictures/CustomSplitter.gif)
