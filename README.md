@@ -30,3 +30,6 @@
 
 ### CustomSplitter
 ![](./demo_pictures/CustomSplitter.gif)
+
+### ProgressButton
+![](./demo_pictures/ProgressButton.gif)
