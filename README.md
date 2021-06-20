@@ -36,3 +36,6 @@
 
 ### SwitchButton
 ![](./demo_pictures/SwitchButton.gif)
+
+### Tumbler
+![](./demo_pictures/Tumbler.gif)
