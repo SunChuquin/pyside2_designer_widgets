@@ -5,6 +5,18 @@ from PySide2.QtGui import QColor, QMouseEvent, QResizeEvent, QPaintEvent, QPaint
 from PySide2.QtWidgets import QWidget
 
 class SwitchButton(QWidget):
+    """
+    开关按钮控件
+    作者:feiyangqingyun(QQ:517216493) 2016-11-6
+    译者:sunchuquin(QQ:1715216365) 2021-06-20
+    1. 可设置开关按钮的样式 圆角矩形/内圆形/外圆形
+    2. 可设置选中和未选中时的背景颜色
+    3. 可设置选中和未选中时的滑块颜色
+    4. 可设置显示的文本
+    5. 可设置滑块离背景的间隔
+    6. 可设置圆角角度
+    7. 可设置是否显示动画过渡效果
+    """
 
     checkedChanged = Signal(bool)  # checked
 
