@@ -41,7 +41,7 @@ class NavListView(QListView):
         super(NavListView, self).__init__(parent)
         self.__model: NavModel = NavModel(self)  # 数据模型
         self.__delegate: NavDelegate = NavDelegate(self)  # 数据委托
-        self.__parentItem: List[AnyStr] = []  # 父节点数据集合
+        self.parentItem: List[AnyStr] = []  # 父节点数据集合
         self.__childItem: List[List[AnyStr]] = []  # 子节点数据
 
         self.__items: str = ''  # 节点集合
@@ -88,7 +88,7 @@ class NavListView(QListView):
         self.__expendMode: NavListView.ExpendMode = NavListView.ExpendMode.ExpendMode_SingleClick  # 节点展开模式 单击/双击/禁用
 
         self.setMouseTracking(True)
-        self.pressed_allIndex.connect(self.__pressed)
+        self.pressed.connect(self.__pressed)
         self.clicked.connect(self.__model.expand)
 
         # 设置节点
@@ -112,12 +112,10 @@ class NavListView(QListView):
         node: NavModel.TreeNode = data.data(Qt.UserRole)
         text: AnyStr = node.text
         parentText: AnyStr = node.parentText
-        parentIndex: int = self.__parentItem.index(parentText)
+        parentIndex: int = self.parentItem.index(parentText)
 
         # 默认没有子节点则父节点为子节点
-        index: int = self.__parentItem.index(text)
-        if parentIndex >= 0:
-            index = self.__childItem[parentIndex].index(text)
+        index: int = self.__childItem[parentIndex].index(text) if parentIndex >= 0 else self.parentItem.index(text)
 
         # 找出子节点在子节点队列中的索引
         childIndex: int = -1
@@ -141,9 +139,7 @@ class NavListView(QListView):
 
         self.pressed_curName.emit(text, parentText)  # 当前节点名称+父节点名称
         self.pressed_curIndex.emit(index, parentIndex)  # 当前节点索引+父节点索引
-        self.pressed_allIndex(childIndex)  # 整个子节点中对应的索引
-
-        print(text, parentText, index, parentIndex, childIndex)
+        self.pressed_allIndex.emit(childIndex)  # 整个子节点中对应的索引
 
     @Slot()
     def __setData(self, list_items: List[AnyStr]) -> None:
@@ -247,7 +243,7 @@ class NavListView(QListView):
         self.__setData(item)
 
         # 将对应的父节点子节点转换为数组,以便用户按下鼠标时候判断
-        self.__parentItem.clear()
+        self.parentItem.clear()
         self.__childItem.clear()
         count: int = len(item)
 
@@ -274,7 +270,7 @@ class NavListView(QListView):
                     if childParentText == text:
                         childs.append(childText)
 
-                self.__parentItem.append(text)
+                self.parentItem.append(text)
                 self.__childItem.append(childs)
         # print(parentItem, childItem)
 

@@ -33,3 +33,6 @@
 
 ### ProgressButton
 ![](./demo_pictures/ProgressButton.gif)
+
+### SwitchButton
+![](./demo_pictures/SwitchButton.gif)
