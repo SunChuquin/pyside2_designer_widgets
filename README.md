@@ -48,3 +48,12 @@
 
 ### TelWidget
 ![](./demo_pictures/TelWidget.gif)
+
+### Line
+![](./demo_pictures/Line.gif)
+
+### ShadowCalendar
+![](./demo_pictures/ShadowCalendar.gif)
+
+### ShadowClock
+![](./demo_pictures/ShadowClock.gif)
