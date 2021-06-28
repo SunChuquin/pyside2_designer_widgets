@@ -60,3 +60,6 @@
 
 ### NavLabel
 ![](./demo_pictures/NavLabel.gif)
+
+### NavProgress
+![](./demo_pictures/NavProgress.gif)
