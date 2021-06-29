@@ -63,3 +63,6 @@
 
 ### NavProgress
 ![](./demo_pictures/NavProgress.gif)
+
+### ColorButton
+![](./demo_pictures/ColorButton.gif)
