@@ -78,3 +78,6 @@
 
 ### ColorPanelHSB
 ![](./demo_pictures/ColorPanelHSB.gif)
+
+### ColorStyle
+![](./demo_pictures/ColorStyle.gif)
