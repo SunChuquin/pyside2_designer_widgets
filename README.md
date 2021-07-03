@@ -84,3 +84,6 @@
 
 ### ColorWidget
 ![](./demo_pictures/ColorWidget.gif)
+
+### ColorPanel
+![](./demo_pictures/ColorPanel.gif)
