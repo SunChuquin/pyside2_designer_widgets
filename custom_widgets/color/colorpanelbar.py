@@ -205,7 +205,7 @@ class ColorPanelBar(QWidget):
         # 根据当前百分比计算高度
         width: int = self.__bgRect.width() - self.__borderWidth
         height: int = self.__bgRect.height() - self.__borderWidth
-        height = height - (self.__percent / 100) * self.__height
+        height = int(height - (self.__percent / 100) * height)
 
         if self.__outMode:
             overlayRect = QRect(self.__borderWidth,

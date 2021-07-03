@@ -72,3 +72,6 @@
 
 ### ColorPanelBtn
 ![](./demo_pictures/ColorPanelBtn.gif)
+
+### ColorPanelFader
+![](./demo_pictures/ColorPanelFader.gif)
