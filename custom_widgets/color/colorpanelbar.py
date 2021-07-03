@@ -260,7 +260,7 @@ class ColorPanelBar(QWidget):
         if posY >= height:
             posY = height - 1
 
-        self.__color = self.__bgPix.toImage().pixel(self.__bgRect.width() / 2, posY)
+        self.__color = QColor(self.__bgPix.toImage().pixel(self.__bgRect.width() / 2, posY))
 
     @property
     def borderWidth(self) -> int: return self.__borderWidth

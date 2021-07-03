@@ -75,3 +75,6 @@
 
 ### ColorPanelFader
 ![](./demo_pictures/ColorPanelFader.gif)
+
+### ColorPanelHSB
+![](./demo_pictures/ColorPanelHSB.gif)
