@@ -81,3 +81,6 @@
 
 ### ColorStyle
 ![](./demo_pictures/ColorStyle.gif)
+
+### ColorWidget
+![](./demo_pictures/ColorWidget.gif)
