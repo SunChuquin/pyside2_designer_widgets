@@ -69,3 +69,6 @@
 
 ### ColorPanelBar
 ![](./demo_pictures/ColorPanelBar.gif)
+
+### ColorPanelBtn
+![](./demo_pictures/ColorPanelBtn.gif)
