@@ -90,3 +90,6 @@
 
 ### LightButton
 ![](./demo_pictures/LightButton.gif)
+
+### PanelItem
+![](./demo_pictures/PanelItem.gif)
