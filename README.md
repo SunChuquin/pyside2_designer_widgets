@@ -93,3 +93,6 @@
 
 ### PanelItem
 ![](./demo_pictures/PanelItem.gif)
+
+### GaugeProgress
+![](./demo_pictures/GaugeProgress.gif)
