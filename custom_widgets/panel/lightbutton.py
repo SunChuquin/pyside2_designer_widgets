@@ -300,47 +300,47 @@ class LightButton(QWidget):
     def setGreen(self) -> None:
         """ 设置为绿色 """
         self.__textColor = QColor(255, 255, 255)
-        self.setBgColor(QColor(0, 166, 0))
+        self.bgColor = QColor(0, 166, 0)
 
     def setRed(self) -> None:
         """ 设置为红色 """
         self.__textColor = QColor(255, 255, 255)
-        self.setBgColor(QColor(255, 0, 0))
+        self.bgColor = QColor(255, 0, 0)
 
     def setYellow(self) -> None:
         """ 设置为黄色 """
         self.__textColor = QColor(25, 50, 7)
-        self.setBgColor(QColor(238, 238, 0))
+        self.bgColor = QColor(238, 238, 0)
 
     def setBlack(self) -> None:
         """ 设置为黑色 """
         self.__textColor = QColor(255, 255, 255)
-        self.setBgColor(QColor(10, 10, 10))
+        self.bgColor = QColor(10, 10, 10)
 
     def setGray(self) -> None:
         """ 设置为灰色 """
         self.__textColor = QColor(255, 255, 255)
-        self.setBgColor(QColor(129, 129, 129))
+        self.bgColor = QColor(129, 129, 129)
 
     def setBlue(self) -> None:
         """ 设置为蓝色 """
         self.__textColor = QColor(255, 255, 255)
-        self.setBgColor(QColor(0, 0, 166))
+        self.bgColor = QColor(0, 0, 166)
 
     def setLightBlue(self) -> None:
         """ 设置为淡蓝色 """
         self.__textColor = QColor(255, 255, 255)
-        self.setBgColor(QColor(100, 184, 255))
+        self.bgColor = QColor(100, 184, 255)
 
     def setLightRed(self) -> None:
         """ 设置为淡红色 """
         self.__textColor = QColor(255, 255, 255)
-        self.setBgColor(QColor(255, 107, 107))
+        self.bgColor = QColor(255, 107, 107)
 
     def setLightGreen(self) -> None:
         """ 设置为淡绿色 """
         self.__textColor = QColor(255, 255, 255)
-        self.setBgColor(QColor(24, 189, 155))
+        self.bgColor = QColor(24, 189, 155)
 
     def startAlarm(self) -> None:
         """ 开始报警闪烁 """

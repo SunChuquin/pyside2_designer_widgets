@@ -96,3 +96,6 @@
 
 ### GaugeProgress
 ![](./demo_pictures/GaugeProgress.gif)
+
+### PanelWidget
+![](./demo_pictures/PanelWidget.gif)
