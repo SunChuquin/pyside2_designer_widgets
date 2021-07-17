@@ -99,3 +99,9 @@
 
 ### PanelWidget
 ![](./demo_pictures/PanelWidget.gif)
+
+### GaugePanel
+![](./demo_pictures/GaugePanel.gif)
+
+### WaveLine
+![](./demo_pictures/WaveLine.gif)
