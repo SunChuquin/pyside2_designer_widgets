@@ -105,3 +105,6 @@
 
 ### WaveLine
 ![](./demo_pictures/WaveLine.gif)
+
+### ProgressTip
+![](./demo_pictures/ProgressTip.gif)
